@@ -1,0 +1,4 @@
+'bigquery-public-data.san_francisco_bikeshare.bikeshare_trips
+'bigquery-public-data.san_francisco_bikeshare.bikeshare_station_info
+'bigquery-public-data.san_francisco_bikeshare.bikeshare_regions
+'bigquery-public-data.san_francisco_bikeshare.bikeshare_station_status

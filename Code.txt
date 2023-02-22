@@ -1,0 +1,35 @@
+select 
+trip_id,
+date(start_date) start_date,
+FORMAT_TIME("%R",extract(time from start_date)) start_hour,
+case when EXTRACT(hour FROM start_date) between 4 and 11 then 'Morning'
+      when EXTRACT(hour FROM start_date) between 12 and 18 then 'Afternoon'
+      when EXTRACT(hour FROM start_date) between 19 and 23 then 'Evening'
+      else 'Night'
+end as Time_Category,
+duration_sec,
+start_station_name,
+concat(start_station_name," - ",end_station_name) route,
+bike_number,
+num_bikes_available,
+subscriber_type,
+member_birth_year,
+(2022-member_birth_year) age,
+case when (2022-member_birth_year) < 40 then 'Young (<40 Y.O)'
+      when (2022-member_birth_year) between 40 and 60 then 'Adult (40-60 Y.O)'
+      else 'Senior (>60 Y.O)'
+end as age_group,
+member_gender, 
+reg.name region_name 
+from 
+bigquery-public-data.san_francisco_bikeshare.bikeshare_trips as trip
+left join bigquery-public-data.san_francisco_bikeshare.bikeshare_station_info as info 
+on trip.start_station_name = info.name
+left join bigquery-public-data.san_francisco_bikeshare.bikeshare_regions as reg 
+on info.region_id = reg.region_id,
+bigquery-public-data.san_francisco_bikeshare.bikeshare_station_status as status  
+where start_date between '2017-06-01' and '2017-12-31'
+and info.name is not null
+and member_gender is not null
+and member_gender != 'Other'
+order by trip.start_date asc

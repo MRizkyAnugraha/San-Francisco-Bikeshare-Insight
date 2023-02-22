@@ -1,0 +1,8 @@
+Big Query URL
+https://console.cloud.google.com/bigquery?sq=371108056001:8f334e7a7f324b799b2340f77a5a9387
+
+Looker URL
+https://lookerstudio.google.com/s/vblwbY9qrQQ
+
+Google Slide URL
+https://docs.google.com/presentation/d/11T191IClX6kDMp1EgtVEGfvgV-nQbyPTXlSxmow6OhY/edit?usp=share_link
